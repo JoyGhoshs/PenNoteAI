@@ -1,4 +1,10 @@
-# PenNote AI
+<p align="center">
+  <h1 align="center">PenNote AI</h1>
+</p>
+
+<p align="center">
+  <img src="cover.png" alt="PenNote AI" width="100%">
+</p>
 
 <p align="center">
   <img src="https://img.shields.io/github/v/release/JoyGhoshs/PenNoteAI?style=flat-square&color=4a90d9&label=version" alt="Release">
