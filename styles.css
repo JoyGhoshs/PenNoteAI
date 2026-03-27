@@ -1,0 +1,587 @@
+.pennote-panel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 8px;
+  gap: 8px;
+}
+
+.pennote-panel-header-legacy {
+  font-size: 14px;
+  font-weight: 600;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--background-modifier-border);
+}
+
+.pennote-log {
+  flex: 1;
+  overflow-y: auto;
+  font-size: 12px;
+  font-family: var(--font-monospace);
+  background: var(--background-secondary);
+  border-radius: 4px;
+  padding: 8px;
+}
+
+.pennote-log-entry {
+  padding: 2px 0;
+  border-bottom: 1px solid var(--background-modifier-border);
+  word-break: break-word;
+  line-height: 1.5;
+}
+
+.pennote-log-entry.search {
+  color: var(--color-blue);
+}
+
+.pennote-log-entry.crawl {
+  color: var(--color-purple);
+}
+
+.pennote-log-entry.think {
+  color: var(--color-yellow);
+}
+
+.pennote-log-entry.write {
+  color: var(--color-green);
+}
+
+.pennote-log-entry.error {
+  color: var(--color-red);
+}
+
+.pennote-panel-actions {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.pennote-token-usage-legacy {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-align: right;
+  padding-top: 4px;
+}
+
+.pennote-modal-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 8px 0;
+}
+
+.pennote-modal-content label {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+  display: block;
+}
+
+.pennote-mode-select {
+  width: 100%;
+  padding: 6px 8px;
+  background: var(--background-secondary);
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 4px;
+  color: var(--text-normal);
+}
+
+.pennote-instruction-input {
+  width: 100%;
+  min-height: 80px;
+  resize: vertical;
+  padding: 8px;
+  background: var(--background-secondary);
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 4px;
+  color: var(--text-normal);
+  font-family: var(--font-text);
+}
+
+.pennote-diff-modal .modal-content {
+  width: 90vw;
+  max-width: 1200px;
+}
+
+.pennote-diff-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  font-family: var(--font-monospace);
+  font-size: 12px;
+  max-height: 60vh;
+  overflow-y: auto;
+  background: var(--background-secondary);
+  border-radius: 4px;
+  padding: 8px;
+}
+
+.pennote-diff-line {
+  padding: 1px 6px;
+  border-radius: 2px;
+  white-space: pre-wrap;
+  word-break: break-all;
+  line-height: 1.6;
+}
+
+.pennote-diff-line.added {
+  background: rgba(0, 200, 83, 0.12);
+  color: var(--color-green);
+}
+
+.pennote-diff-line.removed {
+  background: rgba(255, 80, 80, 0.12);
+  color: var(--color-red);
+}
+
+.pennote-diff-line.unchanged {
+  color: var(--text-muted);
+}
+
+.pennote-diff-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  padding-top: 12px;
+  border-top: 1px solid var(--background-modifier-border);
+}
+
+.pennote-diff-summary {
+  font-size: 12px;
+  color: var(--text-muted);
+  padding: 6px 0;
+}
+
+/* ── Chat UI ────────────────────────────────────────────────────────────── */
+
+/* Header */
+.pennote-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--background-modifier-border);
+  flex-shrink: 0;
+}
+
+.pennote-header-title {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--text-normal);
+}
+
+.pennote-header-btn {
+  font-size: 11px;
+  padding: 2px 8px;
+  background: none;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 4px;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.pennote-header-btn:hover {
+  color: var(--text-normal);
+  border-color: var(--text-muted);
+}
+
+/* Mode selector */
+.pennote-chat-controls {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.pennote-mode-compact {
+  width: 100%;
+  padding: 4px 6px;
+  font-size: 12px;
+  background: var(--background-secondary);
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 6px;
+  color: var(--text-normal);
+}
+
+/* Chat messages */
+.pennote-chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 6px 2px;
+  min-height: 0;
+}
+
+/* Bubbles */
+.pennote-chat-bubble {
+  max-width: 88%;
+  padding: 8px 12px;
+  border-radius: 14px;
+  font-size: 13px;
+  line-height: 1.55;
+  word-break: break-word;
+}
+
+.pennote-chat-bubble.user {
+  align-self: flex-end;
+  background: var(--interactive-accent);
+  color: var(--text-on-accent);
+  border-bottom-right-radius: 4px;
+  white-space: pre-wrap;
+}
+
+.pennote-chat-bubble.assistant {
+  user-select: text;
+  align-self: flex-start;
+  background: var(--background-secondary);
+  color: var(--text-normal);
+  border: 1px solid var(--background-modifier-border);
+  border-bottom-left-radius: 4px;
+}
+
+.pennote-chat-bubble.assistant .markdown-rendered {
+  padding: 0;
+  margin: 0;
+}
+.pennote-chat-bubble.assistant .markdown-rendered > *:first-child { margin-top: 0; }
+.pennote-chat-bubble.assistant .markdown-rendered > *:last-child  { margin-bottom: 0; }
+
+.pennote-chat-bubble.assistant pre,
+.pennote-chat-bubble.assistant code {
+  font-size: 12px;
+  background: var(--background-primary);
+  border-radius: 4px;
+}
+
+.pennote-chat-bubble.assistant pre {
+  padding: 8px 10px;
+  overflow-x: auto;
+  white-space: pre;
+}
+
+.pennote-chat-bubble.assistant p  { margin: 4px 0; }
+.pennote-chat-bubble.assistant ul,
+.pennote-chat-bubble.assistant ol { padding-left: 18px; margin: 4px 0; }
+.pennote-chat-bubble.assistant li  { margin: 2px 0; }
+
+.pennote-chat-bubble.loading {
+  color: var(--text-muted);
+  font-style: italic;
+  align-self: flex-start;
+}
+
+/* ── Diff summary bubble ─────────────────────────────────────────── */
+.pennote-diff-bubble {
+  align-self: flex-start;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--background-secondary);
+  border: 1px solid var(--background-modifier-border);
+  border-left: 3px solid var(--color-blue);
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-family: var(--font-monospace);
+  max-width: 92%;
+}
+
+.pennote-diff-label {
+  color: var(--text-muted);
+  font-size: 11px;
+  flex-shrink: 0;
+}
+
+.pennote-diff-added {
+  color: #3fb950;       /* green */
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.pennote-diff-removed {
+  color: #f85149;       /* red */
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.pennote-diff-file {
+  color: var(--text-muted);
+  font-size: 11px;
+  border-left: 1px solid var(--background-modifier-border);
+  padding-left: 8px;
+  margin-left: 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pennote-error-bubble {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  border-left: 3px solid #f85149;
+}
+
+.pennote-error-text {
+  color: var(--text-normal);
+  font-size: 13px;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.pennote-retry-btn {
+  background: var(--background-modifier-border);
+  border: 1px solid var(--background-modifier-border-hover);
+  border-radius: 6px;
+  color: var(--text-normal);
+  cursor: pointer;
+  font-size: 12px;
+  padding: 3px 10px;
+  transition: background 0.15s;
+}
+
+.pennote-retry-btn:hover {
+  background: var(--background-modifier-hover);
+}
+
+/* ── Plan tracker ────────────────────────────────────────────────── */
+.pennote-plan-tracker {
+  align-self: flex-start;
+  width: 100%;
+  max-width: 100%;
+  background: var(--background-secondary);
+  border: 1px solid var(--background-modifier-border);
+  border-left: 3px solid var(--interactive-accent);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.pennote-plan-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  font-size: 12px;
+  color: var(--text-normal);
+  margin-bottom: 4px;
+}
+
+.pennote-plan-pulse {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--interactive-accent);
+  animation: pennote-pulse 1.2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+@keyframes pennote-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.4; transform: scale(0.75); }
+}
+
+.pennote-plan-done-icon {
+  color: #3fb950;
+  font-weight: 700;
+}
+
+.pennote-plan-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.pennote-plan-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  font-size: 11.5px;
+  color: var(--text-muted);
+  line-height: 1.45;
+  transition: color 0.2s;
+}
+
+.pennote-plan-step.current {
+  color: var(--text-normal);
+}
+
+.pennote-plan-step.done {
+  color: var(--text-muted);
+  opacity: 0.75;
+}
+
+.pennote-step-icon {
+  flex-shrink: 0;
+  font-weight: 700;
+  width: 14px;
+  text-align: center;
+}
+
+.pennote-plan-step.current .pennote-step-icon {
+  color: var(--interactive-accent);
+  animation: pennote-spin-icon 0.8s linear infinite;
+}
+
+@keyframes pennote-spin-icon {
+  0%   { opacity: 1; }
+  50%  { opacity: 0.3; }
+  100% { opacity: 1; }
+}
+
+.pennote-plan-step.done .pennote-step-icon { color: #3fb950; }
+.pennote-plan-step.step-error .pennote-step-icon { color: #f85149; }
+
+.pennote-plan-step.step-search .pennote-step-text { color: var(--color-blue); }
+.pennote-plan-step.step-crawl  .pennote-step-text { color: var(--color-purple); }
+.pennote-plan-step.step-write  .pennote-step-text { color: #3fb950; }
+.pennote-plan-step.step-error  .pennote-step-text { color: #f85149; }
+
+.pennote-plan-step.done .pennote-step-text { color: var(--text-muted) !important; }
+
+.pennote-step-text {
+  word-break: break-word;
+  flex: 1;
+}
+
+/* ── Attachment badge ────────────────────────────────────────────── */
+.pennote-attach-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background: var(--background-secondary);
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 6px;
+  font-size: 11.5px;
+  color: var(--text-muted);
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.pennote-attach-icon {
+  color: var(--interactive-accent);
+  flex-shrink: 0;
+}
+
+.pennote-attach-name {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--text-normal);
+}
+
+.pennote-attach-error {
+  flex: 1;
+  color: #f85149;
+}
+
+.pennote-attach-remove {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 14px;
+  padding: 0 2px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.pennote-attach-remove:hover { color: #f85149; }
+
+/* ── Input row ───────────────────────────────────────────────────── */
+.pennote-chat-input-row {
+  display: flex;
+  gap: 6px;
+  align-items: flex-end;
+  flex-shrink: 0;
+}
+
+.pennote-attach-btn {
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  background: none;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 8px;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 20px;
+  line-height: 1;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.pennote-attach-btn:hover {
+  border-color: var(--interactive-accent);
+  color: var(--interactive-accent);
+}
+
+.pennote-chat-textarea {
+  flex: 1;
+  min-height: 34px;
+  max-height: 120px;
+  resize: none;
+  overflow-y: auto;
+  padding: 7px 10px;
+  background: var(--background-secondary);
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 8px;
+  color: var(--text-normal);
+  font-family: var(--font-text);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.pennote-chat-textarea:focus {
+  border-color: var(--interactive-accent);
+  outline: none;
+}
+
+.pennote-send-btn {
+  padding: 7px 14px;
+  height: 34px;
+  background: var(--interactive-accent);
+  color: var(--text-on-accent);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.pennote-send-btn:hover  { background: var(--interactive-accent-hover); }
+.pennote-send-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+
+/* ── Footer ──────────────────────────────────────────────────────── */
+.pennote-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+  padding-top: 2px;
+}
+
+.pennote-status-text {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.pennote-token-usage {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-align: right;
+}
+
