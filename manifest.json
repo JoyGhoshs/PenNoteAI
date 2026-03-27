@@ -3,8 +3,8 @@
   "name": "PenNote AI",
   "version": "0.1.0",
   "minAppVersion": "1.4.0",
-  "description": "AI-powered penetration testing methodology notes enrichment with live web search.",
+  "description": "AI-powered penetration testing notes enrichment with live web search, agentic tool calls, and a multi-provider LLM chat panel.",
   "author": "Abdur Rahman",
-  "authorUrl": "",
+  "authorUrl": "https://github.com/JoyGhoshs",
   "isDesktopOnly": true
 }
