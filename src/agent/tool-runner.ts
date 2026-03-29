@@ -1,6 +1,7 @@
 import { App, TFile } from "obsidian";
 import type { CrawlResult, SearchResult } from "../types";
 import { DuckDuckGoSearcher } from "../search/duckduckgo";
+import { TavilySearcher } from "../search/tavily";
 import { Crawler } from "../search/crawler";
 import { replaceSectionContent, upsertBulletInSection } from "../notes/markdown-builder";
 
@@ -15,7 +16,7 @@ export class ToolRunner {
 
   constructor(
     private app: App,
-    private searcher: DuckDuckGoSearcher,
+    private searcher: DuckDuckGoSearcher | TavilySearcher,
     private crawler: Crawler,
     private searchLimit: number
   ) {}

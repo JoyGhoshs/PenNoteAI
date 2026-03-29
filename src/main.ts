@@ -4,6 +4,7 @@ import type { AgentStepLog, ChatMessage, ContextStoreData, DiffHunk, PenNoteSett
 import { LLMClient } from "./llm/llm-client";
 import { QueryBuilder } from "./llm/query-builder";
 import { DuckDuckGoSearcher } from "./search/duckduckgo";
+import { TavilySearcher } from "./search/tavily";
 import { Crawler } from "./search/crawler";
 import { ContextStore } from "./memory/context-store";
 import { NoteIndexer } from "./memory/note-indexer";
@@ -26,7 +27,7 @@ export default class PenNotePlugin extends Plugin {
 
   private llmClient!: LLMClient;
   private queryBuilder!: QueryBuilder;
-  private searcher!: DuckDuckGoSearcher;
+  private searcher!: DuckDuckGoSearcher | TavilySearcher;
   private crawler!: Crawler;
   private contextStore!: ContextStore;
   private noteIndexer!: NoteIndexer;
@@ -72,6 +73,7 @@ export default class PenNotePlugin extends Plugin {
     await this.saveData(this.settings);
     this.llmClient.updateSettings(this.settings);
     this.crawler.updateSettings(this.settings);
+    this.searcher = this.createSearcher();
     this.toolRunner = new ToolRunner(
       this.app,
       this.searcher,
@@ -85,10 +87,17 @@ export default class PenNotePlugin extends Plugin {
     );
   }
 
+  private createSearcher(): DuckDuckGoSearcher | TavilySearcher {
+    if (this.settings.searchProvider === "tavily") {
+      return new TavilySearcher(this.settings.tavilyApiKey);
+    }
+    return new DuckDuckGoSearcher();
+  }
+
   private initServices(): void {
     this.llmClient = new LLMClient(this.settings);
     this.queryBuilder = new QueryBuilder(this.llmClient);
-    this.searcher = new DuckDuckGoSearcher();
+    this.searcher = this.createSearcher();
     this.crawler = new Crawler(this.settings);
     this.noteIndexer = new NoteIndexer(this.app);
     this.templateRegistry = new TemplateRegistry();

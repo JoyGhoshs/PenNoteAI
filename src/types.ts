@@ -1,5 +1,7 @@
 export type LLMProvider = "mistral" | "openai" | "xai" | "gemini" | "anthropic" | "openrouter" | "groq";
 
+export type SearchProvider = "duckduckgo" | "tavily";
+
 export interface PenNoteSettings {
   provider: LLMProvider;
   mistralApiKey: string;
@@ -16,6 +18,8 @@ export interface PenNoteSettings {
   openrouterModel: string;
   groqApiKey: string;
   groqModel: string;
+  searchProvider: SearchProvider;
+  tavilyApiKey: string;
   searchResultLimit: number;
   crawlTimeoutMs: number;
   maxAgentIterations: number;
