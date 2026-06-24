@@ -1,5 +1,5 @@
 import { App, Notice, Plugin, PluginSettingTab, Setting } from "obsidian";
-import type { LLMProvider, PenNoteSettings } from "./types";
+import type { LLMProvider, PenNoteSettings, SearchProvider } from "./types";
 import { LLMClient } from "./llm/llm-client";
 
 export const DEFAULT_SETTINGS: PenNoteSettings = {
@@ -18,6 +18,8 @@ export const DEFAULT_SETTINGS: PenNoteSettings = {
   openrouterModel: "anthropic/claude-opus-4-5",
   groqApiKey: "",
   groqModel: "moonshotai/kimi-k2-instruct",
+  searchProvider: "duckduckgo",
+  tavilyApiKey: "",
   searchResultLimit: 5,
   crawlTimeoutMs: 15000,
   maxAgentIterations: 10,
@@ -246,8 +248,37 @@ export class PenNoteSettingTab extends PluginSettingTab {
     containerEl.createEl("h3", { text: "Search & Crawl" });
 
     new Setting(containerEl)
+      .setName("Search Provider")
+      .setDesc("Select the web search provider to use for queries.")
+      .addDropdown((drop) =>
+        drop
+          .addOption("duckduckgo", "DuckDuckGo")
+          .addOption("tavily", "Tavily")
+          .setValue(this.plugin.settings.searchProvider)
+          .onChange(async (value) => {
+            this.plugin.settings.searchProvider = value as SearchProvider;
+            await this.plugin.saveSettings();
+            this.display();
+          })
+      );
+
+    if (this.plugin.settings.searchProvider === "tavily") {
+      new Setting(containerEl)
+        .setName("Tavily API Key")
+        .setDesc("Your Tavily API key from app.tavily.com")
+        .addText((text) => {
+          text.setPlaceholder("tvly-...").setValue(this.plugin.settings.tavilyApiKey).onChange(async (v) => {
+            this.plugin.settings.tavilyApiKey = v.trim();
+            await this.plugin.saveSettings();
+          });
+          text.inputEl.type = "password";
+          text.inputEl.style.width = "100%";
+        });
+    }
+
+    new Setting(containerEl)
       .setName("Search Result Limit")
-      .setDesc("Maximum number of DuckDuckGo results to fetch per query.")
+      .setDesc("Maximum number of search results to fetch per query.")
       .addSlider((slider) =>
         slider
           .setLimits(3, 10, 1)
