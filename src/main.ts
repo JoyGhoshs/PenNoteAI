@@ -3,8 +3,8 @@ import { DEFAULT_SETTINGS, PenNoteSettingTab } from "./settings";
 import type { AgentStepLog, ChatMessage, ContextStoreData, DiffHunk, PenNoteSettings } from "./types";
 import { LLMClient } from "./llm/llm-client";
 import { QueryBuilder } from "./llm/query-builder";
-import { DuckDuckGoSearcher } from "./search/duckduckgo";
-import { TavilySearcher } from "./search/tavily";
+import { createSearcher } from "./search/searcher";
+import type { Searcher } from "./search/searcher";
 import { Crawler } from "./search/crawler";
 import { ContextStore } from "./memory/context-store";
 import { NoteIndexer } from "./memory/note-indexer";
@@ -27,7 +27,7 @@ export default class PenNotePlugin extends Plugin {
 
   private llmClient!: LLMClient;
   private queryBuilder!: QueryBuilder;
-  private searcher!: DuckDuckGoSearcher | TavilySearcher;
+  private searcher!: Searcher;
   private crawler!: Crawler;
   private contextStore!: ContextStore;
   private noteIndexer!: NoteIndexer;
@@ -87,11 +87,8 @@ export default class PenNotePlugin extends Plugin {
     );
   }
 
-  private createSearcher(): DuckDuckGoSearcher | TavilySearcher {
-    if (this.settings.searchProvider === "tavily") {
-      return new TavilySearcher(this.settings.tavilyApiKey);
-    }
-    return new DuckDuckGoSearcher();
+  private createSearcher(): Searcher {
+    return createSearcher(this.settings);
   }
 
   private initServices(): void {

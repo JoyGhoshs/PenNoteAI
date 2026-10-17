@@ -254,6 +254,7 @@ export class PenNoteSettingTab extends PluginSettingTab {
         drop
           .addOption("duckduckgo", "DuckDuckGo")
           .addOption("tavily", "Tavily")
+          .addOption("parallel", "Parallel (free, no API key)")
           .setValue(this.plugin.settings.searchProvider)
           .onChange(async (value) => {
             this.plugin.settings.searchProvider = value as SearchProvider;
@@ -261,6 +262,12 @@ export class PenNoteSettingTab extends PluginSettingTab {
             this.display();
           })
       );
+
+    if (this.plugin.settings.searchProvider === "parallel") {
+      new Setting(containerEl)
+        .setName("Parallel Search MCP")
+        .setDesc("Searches use Parallel Fast mode without an account or API key. Search queries are sent to search.parallel.ai; free usage is rate limited.");
+    }
 
     if (this.plugin.settings.searchProvider === "tavily") {
       new Setting(containerEl)

@@ -86,6 +86,12 @@ Copy the generated `main.js`, `manifest.json`, and `styles.css` into `.obsidian/
 
 ---
 
+### Web search
+
+DuckDuckGo remains the default. To use [Parallel Search MCP](https://docs.parallel.ai/integrations/mcp/search-mcp), select **Settings → PenNote AI → Search & Crawl → Search Provider → Parallel (free, no API key)**. It searches in Fast mode without a Parallel account or API key and supplies source URLs and excerpts to the agent. Your LLM provider still needs its configured key.
+
+Only searches using the selected Parallel provider send queries to `https://search.parallel.ai/mcp`. Free usage is rate limited; errors are reported without switching providers. Each search has a 15-second timeout. The result limit is applied locally because anonymous MCP search settings are managed by the server. Existing DuckDuckGo and Tavily selections and credentials are preserved. `crawl_url` continues to use the existing crawler.
+
 ## Usage
 
 Open the panel with **Ctrl+P → Open PenNote AI panel** or via the ribbon icon. Select a mode from the dropdown, type your instruction, and press **Enter** or **Send**.
@@ -104,7 +110,7 @@ Open the panel with **Ctrl+P → Open PenNote AI panel** or via the ribbon icon.
 
 | Tool | Description |
 |---|---|
-| `search_web` | DuckDuckGo search with advanced operators |
+| `search_web` | Web search using the selected search provider |
 | `crawl_url` | Fetches and extracts the full text of a URL |
 | `read_note` | Reads a vault note by path |
 | `patch_note_section` | Replaces the body of a named section |

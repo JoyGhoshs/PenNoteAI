@@ -1,6 +1,6 @@
 export type LLMProvider = "mistral" | "openai" | "xai" | "gemini" | "anthropic" | "openrouter" | "groq";
 
-export type SearchProvider = "duckduckgo" | "tavily";
+export type SearchProvider = "duckduckgo" | "tavily" | "parallel";
 
 export interface PenNoteSettings {
   provider: LLMProvider;
